@@ -4,24 +4,25 @@
 	2) После ключевого слова return вместо комментария необходимо написать переменную либо выражение с ответом.
 	3) console.log() прописывать не обязательно, т.к. команда return уже означает вывод результата работы функции.
  */
-
 function averageMark(a, g, p) {
-	
-    // реализуйте здесь задание №1
-    
-	return // ваш ответ;
+	a = 2;
+	g = 2;
+	p = 2;
+	let average = (a + g + p)/3;
+	return average;
 }
 
 function sayHello(userName) {
-	
-    // реализуйте здесь задание №2
-    
-	return // ваш ответ;
+	myName = 'Иван';
+	let message = `Привет, мир! Меня зовут ${myName}`;
+	return message;
 }
 
-function calculateFormula() {
-    
-	// реализуйте здесь задание №3
-    
-    return // ваш ответ;
-}
+function calculateFormula(x, y, z) {
+	x = 2;
+	y = 22;
+	z = 0;
+    let result = x * y + 5 * z + x - 1;
+    return result;
+}; 
+
