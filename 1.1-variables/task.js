@@ -5,9 +5,6 @@
 	3) console.log() прописывать не обязательно, т.к. команда return уже означает вывод результата работы функции.
  */
 function averageMark(a, g, p) {
-	a = 2;
-	g = 2;
-	p = 2;
 	let average = (a + g + p)/3;
 	return average;
 }
