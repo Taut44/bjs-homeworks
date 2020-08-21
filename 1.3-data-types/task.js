@@ -1,16 +1,16 @@
 'use strict';
 function calculateTotalMortgage(percent, contribution, amount, date) {
-
+    if(Number.isNaN(percent)) {
+        return `Параметр Процент содержит неправильное значение ${percent}`;
+    } else if (Number.isNaN(contribution)) {
+        return `Параметр первоначального взноса содержит неправильное значение ${contribution}`;
+    } else if (Number.isNaN(amount)) {
+        return `Параметр суммы кредита содержит неправильное значение ${amount}`;
+    } else if (Number.isNaN(date)) {
+        return `Параметр даты содержит неправильное значение ${date}`;
+    };
     const remainder = amount - contribution;
-    function countMonths(startDate, endDate) {
-        let months;
-        months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
-        months -= startDate.getMonth();
-        months += endDate.getMonth();
-        return months <= 0 ? 0 : months;
-    }
-    const nowDate = new Date();
-    const paymentMonths = countMonths(nowDate, date);
+    const paymentMonths = date.getMonth() - new Date().getMonth() + (12 * (date.getFullYear() - new Date().getFullYear()));
     const monthlyPercent = percent / 100 / 12;
     const payment = remainder * (monthlyPercent + monthlyPercent / (Math.pow(1 + monthlyPercent, paymentMonths) - 1));
     console.log(+(payment * paymentMonths).toFixed(2));
