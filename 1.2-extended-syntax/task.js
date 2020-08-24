@@ -28,6 +28,28 @@ function getAverageMark(marks) {
     return sum / marks.length;
 };
 
+// Для ввода только значений а не массива
+
+function getAverageMark(marks) {
+    let array = [];
+    let sum = 0;
+    const excessMarks = 5;
+    for(let i=0; i < arguments.length; i++){
+        array.push(arguments[i]);
+    };
+    if (array.length === 0) {
+      return 0;
+    };
+    for (let i = 0; i < array.length; i++) {
+      sum += array[i];
+      if (array.length > excessMarks) {
+        console.log('Оценок больше пяти')
+        array.splice(5);
+      };
+    };
+      return sum / array.length;
+  };
+
 
 function askDrink(name, dateOfBirthday) {
     const age = new Date().getFullYear() - dateOfBirthday.getFullYear()
