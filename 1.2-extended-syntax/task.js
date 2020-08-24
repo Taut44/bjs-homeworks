@@ -30,7 +30,7 @@ function getAverageMark(marks) {
 
 // Для ввода только значений а не массива
 
-function getAverageMark(marks) {
+/* function getAverageMark(marks) {
     let array = [];
     let sum = 0;
     const excessMarks = 5;
@@ -48,7 +48,7 @@ function getAverageMark(marks) {
       };
     };
       return sum / array.length;
-  };
+  }; */
 
 
 function askDrink(name, dateOfBirthday) {
