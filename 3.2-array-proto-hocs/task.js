@@ -22,7 +22,7 @@ function memorize(fn, limit) {
     if (finder) {
       return finder.result
     };
-    memory.push({ args: arguments, result: fn(...arguments) });
+    memory.push({ args: [arguments], result: fn(...arguments) });
     if (memory.length > limit) {
       memory.shift();
     };
