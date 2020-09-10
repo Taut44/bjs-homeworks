@@ -11,7 +11,7 @@ function validateCount(value) {
         this.value = parseCount(value);
         return this.value;
     } catch (e) {
-        return Error("Невалидное значение");
+        return e;
     };
 };
 
@@ -30,7 +30,7 @@ class Triangle {
     };
 
     getArea() {
-        const p = (this.a + this.b + this.c) / 2;
+        const p = this.getPerimeter() / 2;
         const area = (Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)));
         return Number.parseFloat(area.toFixed(3));
     };
