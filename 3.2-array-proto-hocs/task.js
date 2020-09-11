@@ -20,14 +20,13 @@ function memorize(fn, limit) {
   return function (...args) {
     const finder = memory.find(obj => compareArrays(obj.args, args));
     if (finder) {
-      return finder.result
+      return finder.result;
+    } else {
+      return fn(...args);
     };
-    memory.push({ args: [arguments], result: fn(...arguments) });
+    memory.push({ args: args, result: fn(...args) });
     if (memory.length > limit) {
       memory.shift();
     };
-    return fn(...args)
   };
-
-
 };

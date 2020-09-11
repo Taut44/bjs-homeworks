@@ -7,8 +7,7 @@ function getNames() {
 };
 
 function getCountReliableWeapons(durability) {
-    const quantity = weapons.filter(weapon => weapon.durability > durability);
-    return quantity.length;
+    return (weapons.filter(weapon => weapon.durability > durability)).length;
 };
 
 function hasReliableWeapons(durability) {
@@ -20,9 +19,8 @@ function getReliableWeaponsNames(durability) {
 };
 
 function getTotalDamage() {
-    const totalDamage = weapons.reduce((total, weapon) => {
+    return weapons.reduce((total, weapon) => {
         return total + weapon.attack;
     }, 0);
-    return totalDamage;
 };
 
