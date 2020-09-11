@@ -21,12 +21,23 @@ function memorize(fn, limit) {
     const finder = memory.find(obj => compareArrays(obj.args, args));
     if (finder) {
       return finder.result;
-    } else {
-      return fn(...args);
     };
-    memory.push({ args: args, result: fn(...args) });
+    if (!finder) {
+      memory.push({ args: args, result: fn(...args) });
+    };
     if (memory.length > limit) {
       memory.shift();
     };
+    return fn(...args)
   };
+};
+
+let test = [[1, 2, 3], [1, 2], [1, 2, 3], [1, 2], [9, 5, 2, 4]];
+
+function testCase(testFunction, timerName) {
+  console.time(timerName);
+  for (let i = 0; i < 100; i++) {
+    test.forEach(arr => testFunction(...arr));
+  };
+  console.timeEnd(timerName);
 };
