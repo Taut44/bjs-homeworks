@@ -25,17 +25,12 @@ class AlarmClock {
 
     getCurrentFormattedTime() {
         // return new Date().getHours() + ':' + ('0' + new Date().getMinutes()).slice(-2);
-        return (new Date()).toLocaleString('ru', {hour: 'numeric', minute: 'numeric'});
+        return (new Date()).toLocaleString('ru', { hour: 'numeric', minute: 'numeric' });
     };
 
     start() {
-        function checkClock(alarm) {
-            if (alarm.time == this.getCurrentFormattedTime()) {
-                alarm.callback();
-            } else if (!this.timerId) {
-                this.timerId = setInterval(this.alarmCollection.forEach(alarm => checkClock(alarm)), 5000);
-            };
-        };
+        let checkClock = alarm => (alarm.time == this.getCurrentFormattedTime() && alarm.callback());
+        (!this.timerId) && (this.timerId = setInterval(() => this.alarmCollection.forEach(alarm => checkClock(alarm)), 5000));
     };
 
     stop() {
@@ -46,7 +41,8 @@ class AlarmClock {
     };
 
     printAlarms() {
-        return this.alarmCollection.forEach(obj => console.log(`id: ${obj.id} - time: ${obj.time}`))
+        console.log(`Печать всех будильников в количестве: ${this.alarmCollection.length}`);
+        return this.alarmCollection.forEach(obj => console.log(`Будильник №${obj.id} заведен на ${obj.time}`))
     };
 
     clearAlarms() {
@@ -54,3 +50,17 @@ class AlarmClock {
         this.alarmCollection = [];
     };
 };
+
+function testCase() {
+    let phoneAlarm = new AlarmClock();
+
+    phoneAlarm.addClock(phoneAlarm.getCurrentFormattedTime(), () => console.log("Пора вставать!"), 1);
+    phoneAlarm.addClock(new Date(Date.now() + 60000).toTimeString().substr(0, 5), () => { console.log("Да встань ты уже"); phoneAlarm.removeClock(2) }, 2);
+    phoneAlarm.addClock(new Date(Date.now() + 2 * 60000).toTimeString().substr(0, 5), () => { console.log("Ну наканецтаааа"); phoneAlarm.clearAlarms(); phoneAlarm.printAlarms() }, 3);
+
+    phoneAlarm.printAlarms();
+
+    phoneAlarm.start();
+};
+
+testCase();
